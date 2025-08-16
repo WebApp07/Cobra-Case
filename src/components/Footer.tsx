@@ -27,7 +27,7 @@ const Footer = () => {
                 href="#"
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
-                privacy Policy
+                Privacy Policy
               </Link>
               <Link
                 href="#"
@@ -35,6 +35,13 @@ const Footer = () => {
               >
                 Cookie Policy
               </Link>
+        <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-gray-600"
+              >
+                About Us
+              </Link>
+
             </div>
           </div>
         </div>
