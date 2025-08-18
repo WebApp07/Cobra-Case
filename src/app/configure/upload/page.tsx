@@ -1,20 +1,48 @@
 /* eslint-disable jsx-a11y/alt-text */
 "use client";
 
+import { useUploadThing } from "@/app/api/uploadthing/uploadthing";
 import { Progress } from "@/components/ui/progress";
+import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Loader2, MousePointerSquareDashed, Image } from "lucide-react";
-import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
+import { startTransition, useState, useTransition } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
 
 const Page = () => {
   const [isDragOver, setIsDrageOver] = useState<Boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<Number>(0);
+  const router = useRouter();
+  const { toast } = useToast();
 
-  const onDropRejected = () => {};
-  const onDropAccepted = () => {};
+  const { startUpload, isUploading } = useUploadThing("imageUploader", {
+    onClientUploadComplete: ([data]) => {
+      const configId = data.serverData.configId;
+      startTransition(() => {
+        router.push(`/configure/design?id=${configId}`);
+      });
+    },
+    onUploadProgress(p) {
+      setUploadProgress(p);
+    },
+  });
 
-  const isUploading = false;
+  const onDropRejected = (rejectedFiles: FileRejection[]) => {
+    const [file] = rejectedFiles;
+    setIsDrageOver(false);
+    toast({
+      title: `${file.file.type} type is not supported.`,
+      description: "Please choose a PNG, JPG, or JPEG image instead.",
+      variant: "destructive",
+    });
+  };
+  const onDropAccepted = (acceptedFiles: File[]) => {
+    startUpload(acceptedFiles, { configId: undefined });
+
+    setIsDrageOver(false);
+  };
+
   const [isPending, setTransition] = useTransition();
 
   return (
