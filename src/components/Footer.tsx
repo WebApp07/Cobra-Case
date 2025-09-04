@@ -41,7 +41,12 @@ const Footer = () => {
               >
                 About Us
               </Link>
-
+ <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-gray-600"
+              >
+                Contact Us
+              </Link>
             </div>
           </div>
         </div>
