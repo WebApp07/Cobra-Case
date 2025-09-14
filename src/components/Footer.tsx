@@ -2,61 +2,68 @@ import Link from "next/link";
 import MaxWithWrapper from "./MaxWithWrapper";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-white h-20 relative">
+    <footer className="bg-white border-t border-gray-200">
       <MaxWithWrapper>
-        <div className="border-t border-gray-200" />
-        <div className="h-full flex flex-col md:flex-row md:justify-between justify-center items-center">
-          <div className="text-center md:text-left pb-2 md:pd-0">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center py-6 gap-4">
+          {/* Left Section */}
+          <div className="text-center md:text-left">
             <p className="text-sm text-muted-foreground">
-              Copyright &copy;{new Date().getFullYear()} Developed by{" "}
-              <span className="font-bold text-green-600">Amine Zouguig</span>{" "}
-              All rights reserved
+              &copy; {year} Developed by{" "}
+              <span className="font-semibold text-green-600">
+                Amine Zouguig
+              </span>
+              . All rights reserved.
             </p>
           </div>
 
-          <div className="flex items-center justify-center">
-            <div className="flex space-x-8">
-              <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-gray-600"
-              >
-                Terms
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-gray-600"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-gray-600"
-              >
-                Cookie Policy
-              </Link>
-        <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-gray-600"
-              >
-                About Us
-              </Link>
- <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-gray-600"
-              >
-                Contact Us
-              </Link>
-
-<Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-gray-600"
-              >
-                Contact Us
-              </Link>
-
-            </div>
-          </div>
+          {/* Right Section */}
+          <nav className="flex justify-center md:justify-end">
+            <ul className="flex flex-wrap gap-6 text-sm text-muted-foreground">
+              <li>
+                <Link
+                  href="/terms"
+                  className="hover:text-gray-900 transition-colors"
+                >
+                  Terms
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy"
+                  className="hover:text-gray-900 transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cookies"
+                  className="hover:text-gray-900 transition-colors"
+                >
+                  Cookie Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="hover:text-gray-900 transition-colors"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="hover:text-gray-900 transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </MaxWithWrapper>
     </footer>
